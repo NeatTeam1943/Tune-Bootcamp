@@ -6,7 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AsafCommand;
-import frc.robot.commands.Autos;
 import frc.robot.subsystems.Asaf;
 import frc.robot.commands.ShootShit;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -14,6 +13,8 @@ import frc.robot.subsystems.Shit;
 import frc.robot.commands.TransSurgery;
 import frc.robot.subsystems.lgbtqdeluxepremium;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -32,6 +33,7 @@ public class RobotContainer {
   public final ShootShit m_shootShit = new ShootShit(m_shit);
   private final lgbtqdeluxepremium m_Lgbtqdeluxepremium = new lgbtqdeluxepremium();
   private final TransSurgery m_TransSurgery = new TransSurgery(m_Lgbtqdeluxepremium);
+  private DriveTrain m_drive = new DriveTrain();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -56,15 +58,13 @@ public class RobotContainer {
     m_driverController.x().whileTrue(m_AsafCommand);
     m_driverController.a().whileTrue(m_shootShit);
     m_driverController.b().whileTrue(m_TransSurgery);
-  }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    new Trigger(m_exampleSubsystem::exampleCondition)
+        .onTrue(new ExampleCommand(m_drive));
+
+    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // cancelling on release.
+    m_driverController.y().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 }
