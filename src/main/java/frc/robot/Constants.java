@@ -26,4 +26,9 @@ public final class Constants {
 
     public static final double kSSSpeed = 0.5;
   }
+  
+  public static class lgbtqConstants {
+    public static final int kTransMotorChannel = 2;
+    public static final double kTransSpeed = 0.5;
+  }
 }
