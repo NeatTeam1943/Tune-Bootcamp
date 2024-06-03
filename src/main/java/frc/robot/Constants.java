@@ -16,4 +16,11 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class ShitConst {
+    public static final int kMomoChannel = 0;
+    public static final int kAppaChannel = 1;
+
+    public static final double kSSSpeed = 0.5;
+  }
 }
