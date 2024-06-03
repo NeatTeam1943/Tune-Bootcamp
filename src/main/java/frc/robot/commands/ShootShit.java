@@ -4,26 +4,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ShitConst;
 import frc.robot.subsystems.Shit;
 
 public class ShootShit extends Command {
   private Shit m_shit;
-  private Timer m_time;
 
   /** Creates a new ShootShit. */
   public ShootShit(Shit shit) {
     m_shit = shit;
-    m_time = new Timer();
     addRequirements(m_shit);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_time.reset();
     m_shit.ss(0);
   }
 
@@ -42,7 +38,6 @@ public class ShootShit extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    boolean hhhhhhhamesh = m_time.hasElapsed(5);
-    return hhhhhhhamesh;
+    return false;
   }
 }
