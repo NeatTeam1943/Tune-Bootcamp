@@ -4,15 +4,18 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.lgbtqConstants;
 
 public class lgbtqdeluxepremium extends SubsystemBase {
-  private Talon m_transMotor;
+  private CANSparkMax m_transMotor;
+
   /** Creates a new lgbtqiaplus. */
   public lgbtqdeluxepremium() {
-    m_transMotor = new Talon(lgbtqConstants.kTransMotorChannel);
+    m_transMotor = new CANSparkMax(lgbtqConstants.kTransMotorChannel, MotorType.kBrushless);
   }
 
   public void transSpeed(double s) {

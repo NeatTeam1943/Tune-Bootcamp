@@ -4,19 +4,20 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShitConst;
 
 public class Shit extends SubsystemBase {
-  private Talon m_momoLShooter;
-  private Talon m_appaRShooter;
+  private TalonFX m_momoLShooter;
+  private TalonFX m_appaRShooter;
 
 
   /** Creates a new Shit. */
   public Shit() {
-    m_momoLShooter = new Talon(ShitConst.kMomoChannel);
-    m_appaRShooter = new Talon(ShitConst.kAppaChannel);
+    m_momoLShooter = new TalonFX(ShitConst.kMomoChannel);
+    m_appaRShooter = new TalonFX(ShitConst.kAppaChannel);
   }
 
   public void ss(double s) {
