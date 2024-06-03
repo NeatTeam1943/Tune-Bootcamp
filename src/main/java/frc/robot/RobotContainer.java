@@ -40,7 +40,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    m_driveTrain.setDefaultCommand(
+    m_drive.setDefaultCommand(
       new RunCommand(() ->
         m_drive.setSpeed(m_driverController.getRightTriggerAxis()-m_driverController.getLeftTriggerAxis(), 
         m_driverController.getLeftX()), 
