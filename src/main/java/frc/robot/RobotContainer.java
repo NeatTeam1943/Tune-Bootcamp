@@ -8,15 +8,12 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AsafCommand;
 import frc.robot.subsystems.Asaf;
 import frc.robot.commands.ShootShit;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shit;
 import frc.robot.commands.TransSurgery;
 import frc.robot.subsystems.lgbtqdeluxepremium;
-import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Asaf m_Asaf = new Asaf();
   private final AsafCommand m_AsafCommand = new AsafCommand(m_Asaf);
   public final Shit m_shit = new Shit();
@@ -43,6 +39,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    m_driveTrain.setDefaultCommand(
+      new RunCommand(() ->
+        m_drive.setSpeed(m_driverController.getRightTriggerAxis()-m_driverController.getLeftTriggerAxis(), 
+        m_driverController.getLeftX()), 
+        m_drive));
   }
 
   /**
@@ -58,13 +60,5 @@ public class RobotContainer {
     m_driverController.x().whileTrue(m_AsafCommand);
     m_driverController.a().whileTrue(m_shootShit);
     m_driverController.b().whileTrue(m_TransSurgery);
-
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_drive));
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.y().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 }
