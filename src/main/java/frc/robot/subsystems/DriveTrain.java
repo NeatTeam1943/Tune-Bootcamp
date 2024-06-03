@@ -4,29 +4,35 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.hardware.TalonFX;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
-  private VictorSP m_rightMaster;
-  private VictorSP m_rightSlave;
-  private VictorSP m_leftMaster;
-  private VictorSP m_leftSlave;
+  private TalonFX m_rightMaster;
+  private TalonFX m_rightSlave;
+  private TalonFX m_leftMaster;
+  private TalonFX m_leftSlave;
+  private DifferentialDrive m_driveTrain;
 
   public DriveTrain() {
-    m_rightMaster = new VictorSP(0);
-    m_rightSlave = new VictorSP(1);
+    m_rightMaster = new TalonFX(0);
+    m_leftMaster = new TalonFX(2);
 
-    m_leftMaster = new VictorSP(2);
-    m_leftSlave = new VictorSP(3);
+    m_leftSlave.setControl(new Follower(m_leftMaster.getDeviceID(), false));
+    m_rightSlave.setControl(new Follower(m_rightMaster.getDeviceID(), false));
+    
+    m_driveTrain = new DifferentialDrive(m_leftMaster, m_rightMaster);
   }
 
-  public void Speed(double d) {
-    m_leftMaster.set(d);
-    m_leftSlave.set(d);
-    m_rightMaster.set(d);
-    m_rightSlave.set(d);
+  public void setSpeed(double speed, double rotation) {
+    m_driveTrain.arcadeDrive(speed, rotation);
+
   }
 
   @Override
