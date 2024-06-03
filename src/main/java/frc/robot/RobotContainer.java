@@ -5,8 +5,10 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AsafCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Asaf;
 import frc.robot.commands.ShootShit;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shit;
@@ -22,7 +24,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final Asaf m_Asaf = new Asaf();
+  private final AsafCommand m_AsafCommand = new AsafCommand(m_Asaf);
   public final Shit m_shit = new Shit();
   public final ShootShit m_shootShit = new ShootShit(m_shit);
 
@@ -46,12 +50,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    // new Trigger(m_exampleSubsystem::exampleCondition)
-    //    .onTrue(new ExampleCommand(m_exampleSubsystem));
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+    m_driverController.x().whileTrue(m_AsafCommand);
     m_driverController.a().whileTrue(m_shootShit);
   }
 
