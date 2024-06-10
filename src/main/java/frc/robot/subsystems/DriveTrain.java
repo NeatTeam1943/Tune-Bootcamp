@@ -25,6 +25,8 @@ public class DriveTrain extends SubsystemBase {
 
     m_leftSlave = new TalonFX(DriveTrainConstants.kLeftRear);
     m_rightSlave = new TalonFX(DriveTrainConstants.kRightRear);
+   
+    m_leftMaster.setInverted(false);
 
     m_leftSlave.setControl(new Follower(m_leftMaster.getDeviceID(), false));
     m_rightSlave.setControl(new Follower(m_rightMaster.getDeviceID(), false));
@@ -33,7 +35,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setSpeed(double speed, double rotation) {
-    m_driveTrain.arcadeDrive(speed, rotation);
+    m_driveTrain.arcadeDrive(speed, -rotation);
 
   }
 

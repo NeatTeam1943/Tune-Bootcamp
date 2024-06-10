@@ -19,7 +19,7 @@ public class Asaf extends SubsystemBase {
   }
 
   public void teesof_shragaSpeed(double speed) {
-    m_Shraga.set(speed);
+    m_Shraga.set(-speed);
   }
 
   @Override

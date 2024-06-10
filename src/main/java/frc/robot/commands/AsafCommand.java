@@ -13,14 +13,15 @@ public class AsafCommand extends Command {
   /** Creates a new AsafCommand. */
   public AsafCommand(Asaf asaf) {
     m_asaf = asaf;
-    
+
     addRequirements(m_asaf);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

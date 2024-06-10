@@ -13,7 +13,6 @@ public class Shit extends SubsystemBase {
   private TalonFX m_momoLShooter;
   private TalonFX m_appaRShooter;
 
-
   /** Creates a new Shit. */
   public Shit() {
     m_momoLShooter = new TalonFX(ShitConst.kMomoChannel);
@@ -21,7 +20,7 @@ public class Shit extends SubsystemBase {
   }
 
   public void ss(double s) {
-    m_momoLShooter.set(-s);
+    m_momoLShooter.set(s);
     m_appaRShooter.set(s);
   }
 

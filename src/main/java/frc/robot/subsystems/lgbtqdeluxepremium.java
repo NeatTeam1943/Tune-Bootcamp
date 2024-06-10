@@ -19,7 +19,7 @@ public class lgbtqdeluxepremium extends SubsystemBase {
   }
 
   public void transSpeed(double s) {
-    m_transMotor.set(s);
+    m_transMotor.set(-s);
   }
 
   @Override
