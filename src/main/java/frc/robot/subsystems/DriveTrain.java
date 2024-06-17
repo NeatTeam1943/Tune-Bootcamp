@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveTrainConstants;
@@ -14,6 +13,7 @@ import frc.robot.Constants.DriveTrainConstants;
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   private TalonFX m_rightMaster;
+
   private TalonFX m_rightSlave;
   private TalonFX m_leftMaster;
   private TalonFX m_leftSlave;
@@ -25,22 +25,19 @@ public class DriveTrain extends SubsystemBase {
 
     m_leftSlave = new TalonFX(DriveTrainConstants.kLeftRear);
     m_rightSlave = new TalonFX(DriveTrainConstants.kRightRear);
-   
+
     m_leftMaster.setInverted(false);
 
     m_leftSlave.setControl(new Follower(m_leftMaster.getDeviceID(), false));
     m_rightSlave.setControl(new Follower(m_rightMaster.getDeviceID(), false));
-    
+
     m_driveTrain = new DifferentialDrive(m_leftMaster, m_rightMaster);
   }
 
   public void setSpeed(double speed, double rotation) {
     m_driveTrain.arcadeDrive(speed, -rotation);
-
   }
 
   @Override
   public void periodic() {}
-
-
 }

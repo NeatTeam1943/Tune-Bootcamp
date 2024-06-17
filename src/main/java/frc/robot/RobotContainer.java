@@ -4,16 +4,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AsafCommand;
-import frc.robot.subsystems.Asaf;
 import frc.robot.commands.ShootShit;
-import frc.robot.subsystems.Shit;
 import frc.robot.commands.TransSurgery;
-import frc.robot.subsystems.lgbtqdeluxepremium;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.subsystems.Asaf;
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.Shit;
+import frc.robot.subsystems.lgbtqdeluxepremium;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -41,10 +41,13 @@ public class RobotContainer {
     configureBindings();
 
     m_drive.setDefaultCommand(
-      new RunCommand(() ->
-        m_drive.setSpeed(m_driverController.getRightTriggerAxis()-m_driverController.getLeftTriggerAxis(), 
-        m_driverController.getLeftX()), 
-        m_drive));
+        new RunCommand(
+            () ->
+                m_drive.setSpeed(
+                    m_driverController.getRightTriggerAxis()
+                        - m_driverController.getLeftTriggerAxis(),
+                    m_driverController.getLeftX()),
+            m_drive));
   }
 
   /**
