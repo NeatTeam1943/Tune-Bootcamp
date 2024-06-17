@@ -77,7 +77,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomusCommand() {
-    return new SequentialCommandGroup(new ForwardDrive(m_drive), new turner(m_drive, false), new ForwardDrive(m_drive),
-        new turner(m_drive, true), new ForwardDrive(m_drive));
+    return new SequentialCommandGroup(new ForwardDrive(m_drive), new turner(m_drive, false));
   }
 }

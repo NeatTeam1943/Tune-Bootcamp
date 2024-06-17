@@ -18,6 +18,9 @@ public final class Constants {
     public static final int kLeftRear = 3;
     public static final int kRightFront = 1;
     public static final int kRightRear = 2;
+
+    public static final double kWheelCircumference = 0.47;
+    public static final double kGearboxRatio = 12.76;
   }
 
   public static class AsafConstants {

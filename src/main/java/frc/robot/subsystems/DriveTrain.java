@@ -36,7 +36,14 @@ public class DriveTrain extends SubsystemBase {
 
   public void setSpeed(double speed, double rotation) {
     m_driveTrain.arcadeDrive(speed, -rotation);
+  }
 
+  public double getPos() {
+    return m_rightMaster.getPosition().getValue() / DriveTrainConstants.kGearboxRatio * DriveTrainConstants.kWheelCircumference;
+  }
+
+  public void resetPos() {
+    m_rightMaster.setPosition(0);
   }
 
   @Override
