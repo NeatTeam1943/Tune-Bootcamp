@@ -22,32 +22,11 @@ import frc.robot.subsystems.lgbtqdeluxepremium;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final Asaf m_Asaf = new Asaf();
-  private final AsafCommand m_AsafCommand = new AsafCommand(m_Asaf);
-  public final Shit m_shit = new Shit();
-  public final ShootShit m_shootShit = new ShootShit(m_shit);
-  private final lgbtqdeluxepremium m_Lgbtqdeluxepremium = new lgbtqdeluxepremium();
-  private final TransSurgery m_TransSurgery = new TransSurgery(m_Lgbtqdeluxepremium);
-  private DriveTrain m_drive = new DriveTrain();
-
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-
-    m_drive.setDefaultCommand(
-        new RunCommand(
-            () ->
-                m_drive.setSpeed(
-                    m_driverController.getRightTriggerAxis()
-                        - m_driverController.getLeftTriggerAxis(),
-                    m_driverController.getLeftX()),
-            m_drive));
   }
 
   /**
@@ -60,8 +39,5 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    m_driverController.x().whileTrue(m_AsafCommand);
-    m_driverController.a().whileTrue(m_shootShit);
-    m_driverController.b().whileTrue(m_TransSurgery);
   }
 }
